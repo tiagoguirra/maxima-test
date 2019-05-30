@@ -1,0 +1,41 @@
+version: "2"
+services:
+  backend:
+    container_name: "backend"
+    restart: always
+    build: ./backend
+    environment:      
+      - NODE_ENV=production
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+      - APP_MONGOOSE_HOST=mongodb://mongo/27018
+      - APP_MONGOOSE_DATABASE=apptest 
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    command: npm run dev  
+  frontend:
+    container_name: "frontend"
+    restart: always
+    build: ./frontend   
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000      
+      - VUE_APP_ROOT_API=http://localhost:8000
+    ports:
+      - "3000:3000"    
+    expose:
+      - "3000"
+    command: npm run dev  
+
+  mongo:
+    container_name: "mongo"
+    image: mongo
+    ports:
+      - "27018:27018"
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
