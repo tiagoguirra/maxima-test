@@ -2,7 +2,11 @@
 Aplicação de teste backend
 
 ## Configurações Iniciais
-
+Executando a aplicação fora do docker ou sem passar as variaveis de ambiente 
+descomente a linha 11 do arquivo 'server.js'
+``` js
+require('dotenv').config({ path: path.resolve(__dirname, '.env') })
+```
 ``` bash
 # install dependencies
 npm install

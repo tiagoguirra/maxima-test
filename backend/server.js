@@ -8,7 +8,7 @@ const port = process.env.APP_PORT || 8000;
 const host = process.env.APP_HOST || 'localhost';
 const mongoose = require('mongoose')
 const globalMiddlewares = require('./src/midleware/global')
-require('dotenv').config({ path: path.resolve(__dirname, '.env') })
+// require('dotenv').config({ path: path.resolve(__dirname, '.env') })
 ///Set up mongoose connection
 mongoose.connect(process.env.APP_MONGOOSE_HOST, { useNewUrlParser: true,dbName:process.env.APP_MONGOOSE_DATABASE });
 mongoose.Promise = global.Promise;
